@@ -1,0 +1,20 @@
+# Check out https://docs.codemagic.io/getting-started/building-a-native-android-app/ for more information
+
+workflows:
+  debug-build:
+    name: debug-build
+    scripts:
+      - name: Set up local properties
+        script: echo "sdk.dir=$HOME/programs/android-sdk-macosx" > "$FCI_BUILD_DIR/local.properties"
+      - name: Dunia Games build debug version
+        script: ./gradlew assembleDebug
+    artifacts:
+      - app/build/outputs/**/*.apk
+    publishing:
+      email:
+        recipients:
+          - jupri@qiscus.net
+          - jupriquip@gmail.com
+        notify:
+          success: true
+          failure: true
